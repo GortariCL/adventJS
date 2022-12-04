@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { wrapping } from "../src/01-wrapping";
 
-describe("given the function wrapping", () => {
+describe("given the function countHours", () => {
   it("should be a function", () => {
     expect(typeof wrapping).toBe("function");
   });
