@@ -29,22 +29,21 @@ Pero no demasiados. Sólo los necesarios para cubrir el string.
 
 Ah, y no modifiques (mutes) el array original. */
 
-export const wrapping = (gift) => {
+export const wrapping = (gifts) => {
   if (isNotValidParams())
     throw new Error("invalid parameter");
 
-  return gift.map((e) => {
-    const asterisk = "*";
-    return `${asterisk.repeat(e.length + 2)}\n*${e}*\n${asterisk.repeat(
-      e.length + 2
-    )}`;
+  return gifts.map((gift) => {
+    const len = gift.length + 2
+    const asterisk = "*".repeat(len);
+    return `${asterisk}\n*${gift}*\n${asterisk}`;
   });
 
   function isNotValidParams() {
     return (
-      !Array.isArray(gift) ||
-      gift.length === 0 ||
-      gift.some((e) => typeof e !== "string")
+      !Array.isArray(gifts) ||
+      gifts.length === 0 ||
+      gifts.some((e) => typeof e !== "string")
     );
   }
 };

@@ -29,14 +29,14 @@ Las cajas de regalos no se pueden dividir.
 Los nombres de los regalos y los renos siempre serán mayores que 0.
 */
 
+const weightOfGifts = (packOfGifts) => packOfGifts.map(gift => gift.length).reduce((acc, pre) => acc += pre);
+
+const weigthOfReindeers = (reindeers) => reindeers.map(reindeer => reindeer.length * 2).reduce((acc, pre) => acc += pre);
+
 export const distributeGifts = (packOfGifts, reindeers) => {
     if (isValidParams()) throw new Error("invalid param");
 
-    const weightOfGifts = packOfGifts.map(gift => gift.length).reduce((acc, pre) => acc += pre);
-
-    const weigthOfReindeers = reindeers.map(reindeer => reindeer.length).reduce((acc, pre) => acc += pre);
-
-    const amountOfGifts = Math.trunc((weigthOfReindeers * 2) / weightOfGifts);
+    const amountOfGifts = Math.trunc(weigthOfReindeers(reindeers) / weightOfGifts(packOfGifts));
 
     return amountOfGifts;
 
@@ -55,4 +55,4 @@ export const distributeGifts = (packOfGifts, reindeers) => {
     function isArray() {
         return !Array.isArray(packOfGifts) || !Array.isArray(reindeers);
     }
-}
+};
