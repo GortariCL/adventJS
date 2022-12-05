@@ -46,10 +46,9 @@ export const countHours = (year, holidays) => {
 
   holidays.map((e) => {
     const date = new Date(`${year}/${e}`);
-    if (date.getDay() !== 0 && date.getDay() !== 6) {
-      count += 2;
-    }
+    if (date.getDay() !== 0 && date.getDay() !== 6) count += 2;
   });
+  
   return count;
 
   function isNotValidParams() {
