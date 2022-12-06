@@ -41,10 +41,7 @@ Las cajas no son siempre cuadradas, pueden ser rectangulares.
 */
 
 export const fitInOneBox = (boxes) => {
-  if (!Array.isArray(boxes)) throw new Error("Invalid Param");
-  if (boxes.length === 0) throw new Error("Invalid Param");
-  if (boxes.some((e) => typeof e !== "object"))
-    throw new Error("Invalid Param");
+  if (isValidParams()) throw new Error("Invalid Param");
 
   // Ordenar la lista de cajas de mayor a menor según sus medidas
   boxes.sort((a, b) => (a.l > b.l ? -1 : 1));
@@ -66,4 +63,9 @@ export const fitInOneBox = (boxes) => {
   }
 
   return true; // Es posible empaquetar las cajas
+
+
+  function isValidParams() {
+    return !Array.isArray(boxes) || boxes.length === 0 || boxes.some((e) => typeof e !== "object");
+  }
 };
