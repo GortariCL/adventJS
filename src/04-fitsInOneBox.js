@@ -43,29 +43,20 @@ Las cajas no son siempre cuadradas, pueden ser rectangulares.
 export const fitInOneBox = (boxes) => {
   if (isValidParams()) throw new Error("Invalid Param");
 
-  // Ordenar la lista de cajas de mayor a menor según sus medidas
-  boxes.sort((a, b) => (a.l > b.l ? -1 : 1));
-
-  // Recorrer la lista de cajas de manera secuencial
-  for (let i = 1; i < boxes.length; i++) {
-    // Obtener la caja actual y la caja anterior
-    let currentBox = boxes[i];
-    let previousBox = boxes[i - 1];
-
-    // Verificar si la caja actual cabe dentro de la caja anterior
-    if (
-      currentBox.l > previousBox.l ||
-      currentBox.w > previousBox.w ||
-      currentBox.h > previousBox.h
-    ) {
-      return false; // No es posible empaquetar las cajas
-    }
-  }
-
-  return true; // Es posible empaquetar las cajas
-
+  return boxes
+    .sort((a, b) => a.l - b.l)
+    .every((box, i) => {
+      if (i == boxes.length - 1) return true;
+      const newBox = boxes[i + 1];
+      const giftBox = box.l < newBox.l && box.w < newBox.w && box.h < newBox.h;
+      return giftBox;
+    });
 
   function isValidParams() {
-    return !Array.isArray(boxes) || boxes.length === 0 || boxes.some((e) => typeof e !== "object");
+    return (
+      !Array.isArray(boxes) ||
+      boxes.length === 0 ||
+      boxes.some((e) => typeof e !== "object")
+    );
   }
 };
