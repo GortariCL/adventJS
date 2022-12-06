@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 import { getMaxGifts } from "../src/05-getMaxGifts";
 
 describe("given the getMaxGifts function", () => {
-  it("hould be a function", () => {
+  it("should be a function", () => {
     expect(typeof getMaxGifts).toBe("function");
   });
 
