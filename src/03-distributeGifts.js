@@ -29,30 +29,39 @@ Las cajas de regalos no se pueden dividir.
 Los nombres de los regalos y los renos siempre serán mayores que 0.
 */
 
-const weightOfGifts = (packOfGifts) => packOfGifts.map(gift => gift.length).reduce((acc, pre) => acc += pre);
+const weightOfGifts = (packOfGifts) =>
+  packOfGifts.map((gift) => gift.length).reduce((acc, pre) => (acc += pre));
 
-const weigthOfReindeers = (reindeers) => reindeers.map(reindeer => reindeer.length * 2).reduce((acc, pre) => acc += pre);
+const weigthOfReindeers = (reindeers) =>
+  reindeers
+    .map((reindeer) => reindeer.length * 2)
+    .reduce((acc, pre) => (acc += pre));
 
 export const distributeGifts = (packOfGifts, reindeers) => {
-    if (isValidParams()) throw new Error("invalid param");
+  if (isValidParams()) throw new Error("invalid param");
 
-    const amountOfGifts = Math.trunc(weigthOfReindeers(reindeers) / weightOfGifts(packOfGifts));
+  const amountOfGifts = Math.trunc(
+    weigthOfReindeers(reindeers) / weightOfGifts(packOfGifts)
+  );
 
-    return amountOfGifts;
+  return amountOfGifts;
 
-    function isValidParams() {
-        return isArray() || moreThanZero() || isString();
-    }
+  function isValidParams() {
+    return isArray() || moreThanZero() || isString();
+  }
 
-    function isString() {
-        return packOfGifts.some(e => typeof e !== "string") || reindeers.some(e => typeof e !== "string");
-    }
+  function isString() {
+    return (
+      packOfGifts.some((e) => typeof e !== "string") ||
+      reindeers.some((e) => typeof e !== "string")
+    );
+  }
 
-    function moreThanZero() {
-        return packOfGifts.length === 0 || reindeers.length === 0;
-    }
+  function moreThanZero() {
+    return packOfGifts.length === 0 || reindeers.length === 0;
+  }
 
-    function isArray() {
-        return !Array.isArray(packOfGifts) || !Array.isArray(reindeers);
-    }
+  function isArray() {
+    return !Array.isArray(packOfGifts) || !Array.isArray(reindeers);
+  }
 };

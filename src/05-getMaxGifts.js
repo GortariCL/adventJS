@@ -38,10 +38,7 @@ El número de maxCities puede ser mayor a giftsCities.length
 */
 
 export const getMaxGifts = (giftsCities, maxGifts, maxCities) => {
-  if (
-    isValidParams()
-  )
-    throw new Error("Invalid Param");
+  if (isValidParams()) throw new Error("Invalid Param");
 
   let maxPossibleCities = 0;
 
@@ -59,9 +56,15 @@ export const getMaxGifts = (giftsCities, maxGifts, maxCities) => {
       return (maxPossibleGifts += numGifts);
     }, 0);
 
-    function isValidParams() {
-        return (!Array.isArray(giftsCities) &&
-            typeof maxGifts !== "number" &&
-            typeof maxCities !== "number") || (giftsCities.length < 1 || maxGifts < 1 || maxCities < 1 || giftsCities.some((gift) => typeof gift !== "number"));
-    }
+  function isValidParams() {
+    return (
+      (!Array.isArray(giftsCities) &&
+        typeof maxGifts !== "number" &&
+        typeof maxCities !== "number") ||
+      giftsCities.length < 1 ||
+      maxGifts < 1 ||
+      maxCities < 1 ||
+      giftsCities.some((gift) => typeof gift !== "number")
+    );
+  }
 };

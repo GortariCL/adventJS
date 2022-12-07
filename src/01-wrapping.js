@@ -30,11 +30,10 @@ Pero no demasiados. Sólo los necesarios para cubrir el string.
 Ah, y no modifiques (mutes) el array original. */
 
 export const wrapping = (gifts) => {
-  if (isNotValidParams())
-    throw new Error("invalid parameter");
+  if (isNotValidParams()) throw new Error("invalid parameter");
 
   return gifts.map((gift) => {
-    const len = gift.length + 2
+    const len = gift.length + 2;
     const asterisk = "*".repeat(len);
     return `${asterisk}\n*${gift}*\n${asterisk}`;
   });

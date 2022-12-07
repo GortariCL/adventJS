@@ -33,9 +33,7 @@ const year = 2022;
 const holidays = ["01/06", "04/01", "12/25"];
 
 export const countHours = (year, holidays) => {
-  if (
-    isNotValidParams()
-  )
+  if (isNotValidParams())
     throw new Error("parameter provided must be a number");
 
   const leapYear = (year) => {
@@ -48,14 +46,16 @@ export const countHours = (year, holidays) => {
     const date = new Date(`${year}/${e}`);
     if (date.getDay() !== 0 && date.getDay() !== 6) count += 2;
   });
-  
+
   return count;
 
   function isNotValidParams() {
-    return typeof year !== "number" ||
+    return (
+      typeof year !== "number" ||
       !Array.isArray(holidays) ||
       holidays.length === 0 ||
-      holidays.some((e) => typeof e !== "string");
+      holidays.some((e) => typeof e !== "string")
+    );
   }
 };
 
